@@ -13,7 +13,7 @@ def info_crud(usr_input :str, option: str, tool_context : ToolContext) -> dict :
     user_info = tool_context.state.get("user_info", {})
 
 
-    base_stats = ["user_name", "user_age", "user_fitness_goal", "user_diet_restrictions", "user_diet_plan"]
+    base_stats = ["user_name", "user_age", "user_weight", "user_fitness_goal", "user_diet_restrictions"]
 
     for i in base_stats:
         if option.lower() == i:
@@ -42,6 +42,7 @@ info_tracker = Agent(
         <FUNCTION SIGNATURE KEYWORDS>
             * Queries related to user age : user_age
             * Queries related to user name : user_name
+            * Queries related to user weight : user_weight
             * Queries related to user diet restrictions : user_diet_restrictions
             * Queries related to user fitness goal : user_fitness_goal
         </FUNCTION SIGNATURE KEYWORDS>
@@ -58,9 +59,11 @@ info_tracker = Agent(
                 Once provided use the tool (info_crud) with the parameters (usr_input, "user_name", tool_context). example : ("surya", "user_name", tool_context)
             2. Ask the user their age.
                 Once provided use the tool (info_crud) with the parameters (usr_input, "user_age", tool_context). example : ("20", "user_age", tool_context)
-            3. Ask the user their fitness goal
+            3. Ask the user their weight
+                Once provided use the tool (info_crud) with the parameters (usr_input, "user_weight", tool_context). example : ("75", "user_weight", tool_context)
+            4. Ask the user their fitness goal
                 Once provided use the tool (info_crud) with the parameters (usr_input, "user_fitness_goal", tool_context). example : ("Atheletic", "user_fitness_goal", tool_context)
-            4. Ask the user their diet restrictions
+            5. Ask the user their diet restrictions
                 Once provided use the tool (info_crud) with the parameters (usr_input, "user_diet_restrictions", tool_context). example : ("Allergic to shell fish", "user_diet_restrictions", tool_context)
         </USER-INPUT>
 
