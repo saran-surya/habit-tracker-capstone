@@ -6,6 +6,7 @@ from google.adk.agents.callback_context import CallbackContext
 from .sub_agents.calorie_tracker.agent import calorie_tracker
 from .sub_agents.info_helper.agent import info_tracker
 from .sub_agents.tracker_agent.agent import tracker_agent
+from .sub_agents.gym_tracker.agent import gym_tracker
 
 
 
@@ -31,8 +32,12 @@ def before_agent_callback(callback_context : CallbackContext) -> Optional[types.
             "user_age" : "",
             "user_fitness_goal" : "",
             "user_diet_restrictions" : "",
-            "user_diet_plan" : {}
+            "user_diet_plan" : {},
+            "user_injuries" : "",
+            "user_workout_plan" : {}
         }
+    
+    # The habits and reminders are not packed along with "user_info" to prevent the model from hallucinating
     
     # habits to track
     if "habits_to_track" not in state:
@@ -65,6 +70,8 @@ root_agent = Agent(
                 - info_tracker
             2. Any inputs regarding CRUD operation on reminders / habits should be routed to
                 - tracker_agent
+            3. Any info regarding CRUD operation on gym workouts, should be routed to
+                - gym_tracker
         </AGENT ROUTING>
 
         <ACTIONS>
@@ -72,6 +79,6 @@ root_agent = Agent(
         </ACTIONS>
 
     """,
-    sub_agents=[calorie_tracker, info_tracker, tracker_agent],
+    sub_agents=[calorie_tracker, info_tracker, tracker_agent, gym_tracker],
     before_agent_callback=before_agent_callback
 )
