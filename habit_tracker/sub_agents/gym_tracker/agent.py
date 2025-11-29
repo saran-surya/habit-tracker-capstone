@@ -84,7 +84,9 @@ gym_tracker = Agent(
                 After the valid JSON is formed, then call the tool (user_workout_update)
         </USER-INPUT>
 
-        Please be polite to the user, and allow tweaks to the workouts as necessary
+        <FINALLY>
+            Once all the information is processed and the user is satisfied, please transfer the control back to the main agent (habit_tracker)
+        </FINALLY>
     """,
 
     tools = [user_injury_update, user_workout_update]

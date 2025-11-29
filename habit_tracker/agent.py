@@ -65,14 +65,14 @@ root_agent = Agent(
                 2.a. If empty transfer the control to the sub_agent (tracker_agent) and proceed to ask the relevant questions
         <PRE-REQUSITE>
 
-        <AGENT ROUTING>
+        <AGENT-ROUTING>
             1. Any inputs regarding CRUD operation on personal information should be routed to
                 - info_tracker
-            2. Any inputs regarding CRUD operation on reminders / habits should be routed to
+            2. Any inputs regarding CRUD operation on "reminders" / "habits" should be routed to
                 - tracker_agent
             3. Any info regarding CRUD operation on gym workouts, should be routed to
                 - gym_tracker
-        </AGENT ROUTING>
+        </AGENT-ROUTING>
 
         <ACTIONS>
             1. If the user asks for a cumulative report, show the complete values of {user_info}, {habits_to_track}, {reminders_to_track} all neatly formatted.

@@ -9,15 +9,15 @@ def diet_update(dietPlan : dict, tool_context : ToolContext) -> dict :
         a completely valid json
     """
 
-    user_diet_plan = tool_context.state.get("user_diet_plan", {})
+    user_info = tool_context.state.get("user_info", {})
 
-    user_diet_plan = dietPlan
+    user_info["user_diet_plan"] = dietPlan
 
-    tool_context.state["user_diet_plan"] = user_diet_plan
+    tool_context.state["user_info"] = user_info
 
     return {
         "action" : "Added meal plan",
-        "user_diet_plan" : user_diet_plan,
+        "user_diet_plan" : dietPlan,
         "message" : "Successfully added meal plan"
     }
 
@@ -70,6 +70,9 @@ calorie_tracker = Agent(
                 This JSON should be then processed with the tool (diet_update)
         </INSTRUCTIONS>
 
+        <FINALLY>
+            Once all the information is processed and the user is satisfied, please transfer the control back to the main agent (habit_tracker)
+        </FINALLY>
        
     """,
 
